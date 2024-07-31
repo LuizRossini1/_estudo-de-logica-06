@@ -18,7 +18,7 @@ public class Service {
 
     HttpClient client = HttpClient.newHttpClient();
     HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://www.googleapis.com/books/v1/volumes?q=" + title + "&key=" + apiKey))
+            .uri(URI.create("https://www.googleapis.com/books/v1/volumes?q=" + title + "&maxResults=1&key=" + apiKey))
             .build();
     HttpResponse<String> response;
 
