@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Service {
     Scanner scanner = new Scanner(System.in);
     private String title = scanner.nextLine();
-    private String apiKey = "AIzaSyB7YH_lp2esNcxLa-JxyK5h6SiioXcNJrs";
+    private String apiKey = "";
 
     public String getTitle() {
         return title;
@@ -18,7 +18,8 @@ public class Service {
 
     HttpClient client = HttpClient.newHttpClient();
     HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://www.googleapis.com/books/v1/volumes?q=" + title + "&key=" + apiKey)).build();
+            .uri(URI.create("https://www.googleapis.com/books/v1/volumes?q=" + title + "&key=" + apiKey))
+            .build();
     HttpResponse<String> response;
 
     {
@@ -31,6 +32,4 @@ public class Service {
             throw new RuntimeException(e);
         }
     }
-
-
 }
