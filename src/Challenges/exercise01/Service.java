@@ -12,7 +12,7 @@ public class Service {
     private String title = scanner.nextLine();
     private String apiKey = "AIzaSyB7YH_lp2esNcxLa-JxyK5h6SiioXcNJrs";
 
-    public String getTitle(String title) {
+    public String getTitle() {
         return title;
     }
 
@@ -24,10 +24,13 @@ public class Service {
     {
         try {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            System.out.println(response.body());
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
+
+
 }

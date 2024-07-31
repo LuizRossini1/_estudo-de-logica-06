@@ -6,8 +6,9 @@ package Challenges.exercise01;
 
 public class Main {
     public static void main(String[] args) {
-        Service service = new Service();
+        System.out.println("Enter the name of the book you want to search for");
 
-        service.getTitle("ola");
+        Service service = new Service();
+        service.getTitle();
     }
 }
