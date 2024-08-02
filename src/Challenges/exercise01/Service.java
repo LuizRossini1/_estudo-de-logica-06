@@ -6,9 +6,13 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Scanner;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 public class Service {
     Scanner scanner = new Scanner(System.in);
+    Gson gson = new Gson();
     private String title = scanner.nextLine();
     private String apiKey = "";
 
@@ -25,7 +29,16 @@ public class Service {
     {
         try {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            System.out.println(response.body());
+            String responseBody = response.body();
+            JsonObject jsonResponse = gson.fromJson(responseBody, JsonObject.class);
+            JsonArray items = jsonResponse.getAsJsonArray("items");
+            for (int i = 0; i < items.size(); i++) {
+                JsonObject item = items.get(i).getAsJsonObject();
+                JsonObject volumeInfo = item.getAsJsonObject("volumeInfo");
+                String title = volumeInfo.get("title").getAsString();
+                String authors = volumeInfo.getAsJsonArray("authors").toString();
+                System.out.println("Title: " + title + ", Authors: " + authors);
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (InterruptedException e) {
