@@ -1,5 +1,8 @@
 package Challenges.exercise02;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -9,6 +12,7 @@ import java.util.Scanner;
 
 public class Service {
     Scanner scanner = new Scanner(System.in);
+    Gson gson = new Gson();
     private String criptoName = scanner.nextLine();
 
     HttpClient client = HttpClient.newHttpClient();
@@ -20,7 +24,19 @@ public class Service {
     {
         try {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            System.out.println(response.body());
+            String responseBody = response.body();
+            JsonObject jsonResponse = gson.fromJson(responseBody, JsonObject.class);
+            JsonObject criptoObject = jsonResponse.getAsJsonObject(criptoName);
+
+            if (criptoObject != null) {
+                // Acessa o valor em reais
+                String value = criptoObject.get("brl").getAsString();
+                System.out.println("Crypto: " +criptoName+
+                        "\n Value: " +value);
+            } else {
+                System.out.println("Crypto not found: " + criptoName);
+            }
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (InterruptedException e) {
