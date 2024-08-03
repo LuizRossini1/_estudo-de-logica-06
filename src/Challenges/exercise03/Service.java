@@ -28,13 +28,22 @@ public class Service {
         try {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
             String responseBody = response.body();
-            var jsonResponse = gson.fromJson(responseBody, JsonObject.class);
-            var arrayMeals = jsonResponse.getAsJsonArray();
+            JsonObject jsonResponse = gson.fromJson(responseBody, JsonObject.class);
+            JsonArray arrayMeals = jsonResponse.getAsJsonArray("meals");
                 for (int i = 0; i < arrayMeals.size(); i++) {
                     JsonObject meal = arrayMeals.get(i).getAsJsonObject();
-                    String nameRecipe = meal.get("strMeal").getAsString();
+                    var nameRecipe = meal.get("strMeal").getAsString();
+                    var category = meal.get("strCategory").getAsString();
+                    var region = meal.get("strArea").getAsString();
+                    var instructions = meal.get("strInstructions").getAsString();
 
-                    System.out.println(nameRecipe);
+                    System.out.println("Recipe: " +nameRecipe+
+                            "\n"+
+                            "\nCategory: " +category+
+                            "\n"+
+                            "\nRegion: " +region+
+                            "\n"+
+                            "\nIntructions: " +instructions);
             }
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
