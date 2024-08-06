@@ -1,7 +1,6 @@
-package Challenges.exercise02;
+package Challenges01.exercise02;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import java.io.IOException;
 import java.net.URI;

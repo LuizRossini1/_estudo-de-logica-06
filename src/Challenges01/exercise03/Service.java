@@ -1,4 +1,4 @@
-package Challenges.exercise03;
+package Challenges01.exercise03;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;

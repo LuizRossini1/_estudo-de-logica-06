@@ -1,6 +1,5 @@
-package Challenges.exercise01;
+package Challenges01.exercise01;
 import java.io.IOException;
-import java.io.InterruptedIOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
