@@ -4,4 +4,10 @@ pessoa em um objeto do tipo Person. */
 package Challenges02.exercise01;
 
 public record Person(String name, int age, String city) {
+    @Override
+    public String toString() {
+        return "Name: " +name+ "\n" +
+                "Age: " +age+ "\n" +
+                "City: " +city;
+    }
 }
