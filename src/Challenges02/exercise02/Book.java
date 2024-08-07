@@ -4,4 +4,9 @@ um livro em um objeto do tipo Livro. */
 package Challenges02.exercise02;
 
 public record Book(String title, String author) {
+    @Override
+    public String toString() {
+        return "Book's title: " +title+"\n"+
+                "Author: " +author;
+    }
 }
