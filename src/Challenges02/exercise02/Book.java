@@ -3,10 +3,11 @@ Em seguida, implemente um programa que utiliza a biblioteca Gson para converter 
 um livro em um objeto do tipo Livro. */
 package Challenges02.exercise02;
 
-public record Book(String title, String author) {
+public record Book(String title, String author, Publisher publisher) {
     @Override
     public String toString() {
         return "Book's title: " +title+"\n"+
-                "Author: " +author;
+                "Author: " +author +"\n"+
+                publisher;
     }
 }
